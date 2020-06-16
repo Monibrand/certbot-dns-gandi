@@ -1,5 +1,4 @@
 name: certbot-dns-gandi CI
-
 on:
   push:
     branches: [ master ]
@@ -9,10 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Extract commit id
-      id: extract_commit_id
-      shell: bash
-      run: echo "##[set-output name=commit_id;]$(git rev-parse HEAD | cut -c 1-8)"
     - name: Dockerhub login
       env:
         DH_USER: ${{ secrets.DH_USER }}
@@ -32,5 +27,5 @@ jobs:
         --platform=linux/amd64,linux/arm/v7,linux/arm64 \
         --output "type=image,push=true"                 \
         --file ./Dockerfile .                           \
-        --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:${COMMIT_ID}
+        --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:${GITHUB_SHA:0:7}
         --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:latest
