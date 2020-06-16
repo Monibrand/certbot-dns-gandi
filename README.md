@@ -1,10 +1,15 @@
+# Quick reference
+
+  - Supported architectures: amd64, arm32v7, arm64v8
+  - [GitHub repository](https://github.com/josebamartos/certbot-dns-gandi)
+
 # What is certbot-dns-gandi?
 
 It is a tool for requesting new SSL certificates from Let's Encrypt. It does the DNS challenge for validation and manages the creation and deletion of the temporary DNS records through Gandi's LiveDNS API.
 
 # How to use this image
 
-This image is based on [certbot/certbot]() and includes the required bash script set to make the DNS challenge against Gandi's LiveDNS API and get new SSL certificate files from Let's Encrypt. Containers based on this image must be configured using environment variables or a environment file. A sample of the environment file is present in the repository.
+This image is based on [certbot/certbot](https://hub.docker.com/r/certbot/certbot) and includes the required bash script set to make the DNS challenge against Gandi's LiveDNS API and get new SSL certificate files from Let's Encrypt. Containers based on this image must be configured using environment variables or a environment file. A sample of the environment file is present in the repository.
 
 ## Configuration
 
