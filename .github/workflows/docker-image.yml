@@ -23,12 +23,12 @@ jobs:
       id: buildx
       uses: crazy-max/ghaction-docker-buildx@v1
       with:
-        version: latest
+        buildx-version: latest
     - name: Build dockerfile (with push)
       run: |
         docker buildx build                             \
         --platform=linux/amd64,linux/arm/v7,linux/arm64 \
         --output "type=image,push=true"                 \
         --file ./Dockerfile .                           \
-        --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:eng:${{ steps.extract_commit_id.outputs.commit_id }}
+        --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:${{ steps.extract_commit_id.outputs.commit_id }}
         --tag $(echo "${DOCKER_USERNAME}" | tr '[:upper:]' '[:lower:]')/GITHUB_REPOSITORY:latest
