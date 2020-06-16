@@ -15,10 +15,10 @@ jobs:
       run: echo "##[set-output name=commit_id;]$(git rev-parse HEAD | cut -c 1-8)"
     - name: Dockerhub login
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        DH_USER: ${{ secrets.DH_USER }}
+        DH_TOKEN: ${{ secrets.DH_TOKEN }}
       run: |
-        echo "${DOCKERHUB_TOKEN}" | docker login --username ${DOCKERHUB_USER} --password-stdin
+        echo "${DH_TOKEN}" | docker login --username ${DH_USER} --password-stdin
     - name: Set up Docker Buildx
       id: buildx
       uses: crazy-max/ghaction-docker-buildx@v1
