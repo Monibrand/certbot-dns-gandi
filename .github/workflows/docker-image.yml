@@ -23,9 +23,9 @@ jobs:
       env:
         COMMIT_ID: steps.extract_commit_id.outputs.commit_id
       run: |
-        docker buildx build                             \
-        --platform=linux/amd64,linux/arm/v7,linux/arm64 \
-        --output "type=image,push=true"                 \
-        --file ./Dockerfile .                           \
-        --tag $(echo "${DH_USER}" | tr '[:upper:]' '[:lower:]')/${GITHUB_REPOSITORY}:${GITHUB_SHA:0:7}
+        docker buildx build                                                                            \
+        --platform=linux/amd64,linux/arm/v7,linux/arm64                                                \
+        --output "type=image,push=true"                                                                \
+        --file ./Dockerfile .                                                                          \
+        --tag $(echo "${DH_USER}" | tr '[:upper:]' '[:lower:]')/${GITHUB_REPOSITORY}:${GITHUB_SHA:0:7} \
         --tag $(echo "${DH_USER}" | tr '[:upper:]' '[:lower:]')/${GITHUB_REPOSITORY}:latest
