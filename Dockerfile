@@ -1,4 +1,4 @@
-FROM certbot/certbot
+FROM certbot/certbot:arm32v6-v1.0.0
 
 COPY ./challenge /challenge
 
