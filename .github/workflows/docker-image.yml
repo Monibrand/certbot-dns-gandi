@@ -20,10 +20,10 @@ jobs:
       uses: crazy-max/ghaction-docker-buildx@v3.1.0
     - name: Build dockerfile (with push)
       run: |
-        docker buildx build                                                                   \
-          --platform=linux/amd64,linux/arm/v7,linux/arm64                                     \
-          --output type=image,push=true                                                       \
-          --file ./Dockerfile                                                                 \
-          --tag $(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]'):${GITHUB_SHA:0:7} \
-          --tag $(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]'):latest            \
+        docker buildx build                                              \
+          --platform=linux/amd64,linux/arm/v7,linux/arm64                \
+          --output type=image,push=true                                  \
+          --file ./Dockerfile                                            \
+          --tag $(echo "eneaproject/certbot-dns-gandi":${GITHUB_SHA:0:7} \
+          --tag $(echo "eneaproject/certbot-dns-gandi:latest             \
           .
