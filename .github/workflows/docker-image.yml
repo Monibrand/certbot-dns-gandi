@@ -25,5 +25,5 @@ jobs:
           --output type=image,push=true                                  \
           --file ./Dockerfile                                            \
           --tag $(echo "eneaproject/certbot-dns-gandi":${GITHUB_SHA:0:7} \
-          --tag $(echo "eneaproject/certbot-dns-gandi:latest             \
+          --tag $(echo "eneaproject/certbot-dns-gandi":latest            \
           .
