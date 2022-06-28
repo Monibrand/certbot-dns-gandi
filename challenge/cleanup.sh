@@ -5,6 +5,9 @@
 ####################
 
 NO_WC_DOMAIN=$(echo ${CERTBOT_DOMAIN} | sed -e 's/^*.//g')
+MAIN_DOMAIN=$(echo ${CERTBOT_DOMAIN} | awk -F '.' '{print $(NF-1)"."$NF}')
+SUB_DOMAIN=$(echo ${CERTBOT_DOMAIN} | awk -F ".${MAIN_DOMAIN}" '{print $1}')
+NO_WC_SUB_DOMAIN=$(echo ${SUB_DOMAIN} | sed -e 's/^*.//g')
 
 
 #####################
@@ -17,4 +20,4 @@ curl                                                                           \
     --silent                                                                   \
     --request DELETE                                                           \
     --header "Authorization: Apikey ${GANDI_API_KEY}"                          \
-    https://api.gandi.net/v5/livedns/domains/${NO_WC_DOMAIN}/records/_acme-challenge
+    https://api.gandi.net/v5/livedns/domains/${MAIN_DOMAIN}/records/_acme-challenge.{NO_WC_SUB_DOMAIN}
